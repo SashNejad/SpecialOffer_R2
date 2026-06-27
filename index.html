@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sash Nejad — Online Coaching Montreal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --green: #355E57;
+    --green-dark: #274840;
+    --green-light: rgba(53,94,87,0.08);
+    --cream: #EBE3CA;
+    --cream-dark: #d9d0b5;
+    --white: #ffffff;
+    --off-white: #F5F1E8;
+    --black: #111111;
+    --muted: #6b7570;
+    --border: rgba(53,94,87,0.12);
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--white);
+    color: var(--black);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.97);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 17px;
+    color: var(--green);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-cta {
+    background: var(--green);
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 8px 20px;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+  .nav-cta:hover { background: var(--green-dark); }
+
+  /* HERO */
+  .hero {
+    background: var(--green);
+    color: var(--white);
+    padding: 5.5rem 2rem 4.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -80px; left: 50%;
+    transform: translateX(-50%);
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(235,227,202,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--cream);
+    border: 1px solid rgba(235,227,202,0.35);
+    padding: 5px 16px;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(36px, 6vw, 64px);
+    font-weight: 400;
+    line-height: 1.1;
+    color: var(--white);
+    max-width: 760px;
+    margin: 0 auto 1.5rem;
+    letter-spacing: -0.01em;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--cream);
+  }
+  .hero-sub {
+    font-size: 17px;
+    color: rgba(255,255,255,0.65);
+    max-width: 500px;
+    margin: 0 auto 1.25rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+
+  /* Urgency line — near the CTA */
+  .urgency-note {
+    font-size: 12px;
+    color: rgba(235,227,202,0.75);
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .urgency-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    background: var(--cream);
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+    opacity: 0.8;
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 0.3; }
+  }
+
+  .btn-primary {
+    display: inline-block;
+    background: var(--cream);
+    color: var(--green-dark);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 14px 32px;
+    border-radius: 4px;
+    transition: background 0.2s, transform 0.15s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary:hover { background: var(--cream-dark); transform: translateY(-1px); }
+  .btn-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    margin-top: 12px;
+  }
+  .proof-bar {
+    display: flex;
+    justify-content: center;
+    gap: 3rem;
+    margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+  }
+  .proof-item { text-align: center; }
+  .proof-num {
+    font-family: var(--font-display);
+    font-size: 28px;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .proof-label {
+    font-size: 12px;
+    color: rgba(255,255,255,0.4);
+    margin-top: 5px;
+    letter-spacing: 0.04em;
+  }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 960px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 4vw, 38px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 3rem;
+    max-width: 540px;
+  }
+
+  /* ABOUT / PHOTO */
+  .about { background: var(--off-white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 3.5rem;
+    align-items: center;
+  }
+  .photo-placeholder {
+    width: 280px;
+    height: 340px;
+    background: var(--cream-dark);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    border: 2px dashed rgba(53,94,87,0.25);
+    text-align: center;
+    padding: 1.5rem;
+  }
+  .photo-placeholder svg {
+    opacity: 0.35;
+  }
+  .photo-placeholder-label {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    max-width: 180px;
+  }
+  .photo-placeholder-label strong {
+    display: block;
+    font-size: 13px;
+    color: var(--green);
+    margin-bottom: 4px;
+  }
+  .about-text {}
+  .about-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(24px, 3.5vw, 34px);
+    font-weight: 400;
+    line-height: 1.2;
+    margin-bottom: 1.25rem;
+    max-width: 440px;
+  }
+  .about-text h2 em { font-style: italic; color: var(--green); }
+  .about-text p {
+    font-size: 15px;
+    color: #444;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 1rem;
+  }
+  .about-text p:last-child { margin-bottom: 0; }
+
+  /* WHO */
+  .who { background: var(--white); }
+  .who-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .who-card {
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .who-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+  .who-card span { font-size: 14px; color: var(--black); }
+
+  /* WHAT YOU GET */
+  .what { background: var(--off-white); }
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--border);
+  }
+  .feature {
+    background: var(--white);
+    padding: 2rem;
+  }
+  .feature-num {
+    font-family: var(--font-display);
+    font-size: 32px;
+    color: var(--green);
+    opacity: 0.25;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+  .feature-title {
+    font-size: 15px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--black);
+  }
+  .feature-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  /* HOW IT WORKS */
+  .how { background: var(--white); }
+  .steps { display: flex; flex-direction: column; gap: 0; max-width: 640px; }
+  .step {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .step:last-child { border-bottom: none; }
+  .step-num {
+    font-family: var(--font-display);
+    font-size: 48px;
+    color: var(--green);
+    opacity: 0.2;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 52px;
+    text-align: right;
+  }
+  .step-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 6px;
+    color: var(--black);
+  }
+  .step-desc { font-size: 14px; color: var(--muted); line-height: 1.7; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--green); }
+  .testimonials .section-eyebrow { color: var(--cream); opacity: 0.7; }
+  .testimonials .section-title { color: var(--white); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3.5rem;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(235,227,202,0.15);
+    border-radius: 10px;
+    padding: 1.75rem;
+  }
+  .testimonial-stars {
+    color: var(--cream);
+    font-size: 14px;
+    margin-bottom: 1rem;
+    letter-spacing: 2px;
+  }
+  .testimonial-quote {
+    font-size: 14px;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.75;
+    margin-bottom: 1.25rem;
+    font-style: italic;
+    font-family: var(--font-display);
+  }
+  .testimonial-author {
+    font-size: 13px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+  .testimonial-detail {
+    font-size: 12px;
+    color: rgba(255,255,255,0.35);
+    margin-top: 2px;
+  }
+
+  /* BEFORE / AFTER */
+  .before-after-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    margin-bottom: 1rem;
+  }
+  .before-after-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+  }
+  .ba-card {
+    border-radius: 8px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(235,227,202,0.12);
+  }
+  .ba-photo-placeholder {
+    height: 260px;
+    background: rgba(255,255,255,0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: 1px dashed rgba(235,227,202,0.15);
+  }
+  .ba-photo-placeholder svg { opacity: 0.2; }
+  .ba-photo-placeholder span {
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .ba-footer {
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .ba-name { font-size: 13px; color: rgba(255,255,255,0.6); }
+  .ba-result {
+    font-size: 12px;
+    color: var(--cream);
+    font-weight: 500;
+  }
+
+  /* PRICING */
+  .pricing { background: var(--off-white); }
+  .pricing-card {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 560px;
+  }
+  .pricing-header {
+    background: var(--green);
+    padding: 2rem 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .pricing-name {
+    font-family: var(--font-display);
+    font-size: 22px;
+    color: var(--white);
+    font-weight: 400;
+  }
+  .pricing-sub { font-size: 13px; color: rgba(255,255,255,0.45); margin-top: 4px; }
+  .pricing-price-block { text-align: right; }
+  .pricing-was {
+    font-size: 14px;
+    color: rgba(255,255,255,0.35);
+    text-decoration: line-through;
+    margin-bottom: 2px;
+  }
+  .pricing-amount {
+    font-family: var(--font-display);
+    font-size: 40px;
+    color: var(--cream);
+    line-height: 1;
+  }
+  .pricing-period { font-size: 13px; color: rgba(255,255,255,0.4); margin-top: 2px; }
+  .pricing-body { padding: 2rem 2.5rem; background: var(--white); }
+  .pricing-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--black);
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .pricing-item:last-of-type { border-bottom: none; }
+  .check {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    background: var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .check::after {
+    content: '';
+    width: 5px; height: 8px;
+    border-right: 1.5px solid var(--green);
+    border-bottom: 1.5px solid var(--green);
+    transform: rotate(45deg) translate(-1px,-1px);
+  }
+  .addon-label {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 1.5rem 0 0.75rem;
+  }
+  .addon {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+    color: var(--muted);
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .addon:last-child { border-bottom: none; }
+  .addon-price { font-weight: 500; color: var(--black); }
+
+  /* FAQ */
+  .faq { background: var(--white); }
+  .faq-list { max-width: 660px; }
+  .faq-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    padding: 1.25rem 0;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    font-family: var(--font-body);
+  }
+  .faq-question:hover { color: var(--green); }
+  .faq-icon {
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: var(--green-light);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s;
+    color: var(--green);
+    font-size: 16px;
+    line-height: 1;
+  }
+  .faq-item.open .faq-icon { background: var(--green); color: var(--white); }
+  .faq-answer {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.75;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+  .faq-item.open .faq-answer {
+    max-height: 300px;
+    padding-bottom: 1.25rem;
+  }
+
+  /* CTA FOOTER */
+  .cta-section {
+    background: var(--green);
+    text-align: center;
+    padding: 6rem 2rem;
+  }
+  .cta-section h2 {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 4vw, 44px);
+    color: var(--white);
+    font-weight: 400;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .cta-section h2 em { font-style: italic; color: var(--cream); }
+  .cta-section p {
+    font-size: 15px;
+    color: rgba(255,255,255,0.5);
+    max-width: 420px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.7;
+    font-weight: 300;
+  }
+  .cta-foot-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    margin-top: 1rem;
+    letter-spacing: 0.04em;
+  }
+
+  /* FOOTER */
+  footer {
+    background: #1a2e2b;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+    font-size: 12px;
+    padding: 2rem 1.5rem;
+    letter-spacing: 0.04em;
+  }
+  .footer-social {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  .footer-social a {
+    color: rgba(235,227,202,0.55);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+  }
+  .footer-social a:hover { color: var(--cream); }
+  .footer-divider {
+    border: none;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    margin: 0 auto 1rem;
+    max-width: 320px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 720px) {
+    .about-grid { grid-template-columns: 1fr; }
+    .photo-placeholder { width: 100%; height: 260px; }
+    .proof-bar { gap: 1.5rem; }
+    .pricing-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    .pricing-price-block { text-align: left; }
+    nav { padding: 0 1rem; }
+    section { padding: 3.5rem 1.25rem; }
+    .hero { padding: 4rem 1.25rem 3.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .btn-primary:hover { transform: none; }
+    .urgency-dot { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">Sash Nejad — Certified Personal Trainer</a>
+  <a href="https://tally.so/r/vGggxD" class="nav-cta" target="_blank" rel="noopener">Book Free Assessment Call</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-eyebrow"> · Online Personal Coaching · </div>
+  <h1>Transform your body<br>with a plan built <br><em>only for you</em></h1>
+  <p class="hero-sub">Stop guessing at the gym. A personalized coaching system built around your goals, your schedule, and your life.</p>
+  <p class="urgency-note"><span class="urgency-dot"></span>Limited spots available each month</p>
+  <a href="https://tally.so/r/vGggxD" class="btn-primary" target="_blank" rel="noopener">Quick assessment form &amp; book your free 15-min call</a>
+  <p class="btn-note">Free · No commitment · No pressure</p>
+  <div class="proof-bar">
+    <div class="proof-item">
+      <div class="proof-num">50+</div>
+      <div class="proof-label">Clients transformed</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">15 min</div>
+      <div class="proof-label">Free consultation</div>
+    </div>
+    <div class="proof-item">
+      <div class="proof-num">24/7</div>
+      <div class="proof-label">WhatsApp support</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT / PHOTO -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="photo-placeholder">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#355E57" stroke-width="1.5">
+          <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+        </svg>
+        <div class="photo-placeholder-label">
+          <strong>Add your photo here</strong>
+          Upload as <code>sash-photo.jpg</code> to your GitHub repo root, then replace this block with:<br><br>
+          <code style="font-size:11px">&lt;img src="sash-photo.jpg" alt="Sash Nejad" style="width:100%;height:100%;object-fit:cover;border-radius:10px"&gt;</code>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="section-eyebrow">Meet your coach</p>
+        <h2>Hi, I'm Sash —<br>I coach people who are <em>done with guessing</em></h2>
+        <p>I'm a certified personal trainer based in Montreal with a passion for cutting through the noise and building programs that actually work for real people with real lives.</p>
+        <p>Whether you're starting from zero or breaking through a plateau, I'll build a system around you — your body, your schedule, your goals — so you never have to wonder "am I doing this right?" again.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO -->
+<section class="who">
+  <div class="container">
+    <p class="section-eyebrow">Who this is for</p>
+    <h2 class="section-title">Built for people who are serious about real results</h2>
+    <div class="who-grid">
+      <div class="who-card"><div class="who-dot"></div><span>Fat Loss &amp; Muscle Toning</span></div>
+      <div class="who-card"><div class="who-dot"></div><span>Weight Management &amp; Nutrition</span></div>
+      <div class="who-card"><div class="who-dot"></div><span>Building Muscle &amp; Strength</span></div>
+      <div class="who-card"><div class="who-dot"></div><span>Healthspan and Longevity</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT YOU GET -->
+<section class="what">
+  <div class="container">
+    <p class="section-eyebrow">What you get</p>
+    <h2 class="section-title">One program, built around you — start to finish.</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="feature-num">01</div>
+        <div class="feature-title">Personalized workout program</div>
+        <div class="feature-desc">A plan designed around your body, goals, equipment, and weekly availability.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-num">02</div>
+        <div class="feature-title">1-on-1 onboarding session (in-person or virtual)</div>
+        <div class="feature-desc">Hands-on coaching to lock in your form, technique, and confidence from day one.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-num">03</div>
+        <div class="feature-title">Weekly check-ins</div>
+        <div class="feature-desc">Accountability built into the plan so you never lose momentum between sessions.</div>
+      </div>
+      <div class="feature">
+        <div class="feature-num">04</div>
+        <div class="feature-title">24/7 WhatsApp support</div>
+        <div class="feature-desc">Message Sash anytime — questions, adjustments, or just a push when you need it.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how">
+  <div class="container">
+    <p class="section-eyebrow">How it works</p>
+    <h2 class="section-title">From assessment to results in 3 steps</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Fill the free assessment</div>
+          <div class="step-desc">5 quick questions about your goals, current fitness, and what's been holding you back. Takes 2 minutes.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Join your free 15-min call</div>
+          <div class="step-desc">Sash reviews your answers before the call and walks you through a personalized game plan. No pitch. No pressure.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Start your transformation</div>
+          <div class="step-desc">If it's a fit, your custom program is ready within 48 hours and your journey begins.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <p class="section-eyebrow">Results</p>
+    <h2 class="section-title" style="color:var(--white)">What clients are saying</h2>
+
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Your testimonial will go here — share your experience working with Sash in 2–3 sentences."</p>
+        <div class="testimonial-author">Client Name</div>
+        <div class="testimonial-detail">Goal · Result (e.g. Lost 12 lbs in 8 weeks)</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Your testimonial will go here — share your experience working with Sash in 2–3 sentences."</p>
+        <div class="testimonial-author">Client Name</div>
+        <div class="testimonial-detail">Goal · Result</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">"Your testimonial will go here — share your experience working with Sash in 2–3 sentences."</p>
+        <div class="testimonial-author">Client Name</div>
+        <div class="testimonial-detail">Goal · Result</div>
+      </div>
+    </div>
+
+    <div class="before-after-label">Before &amp; After</div>
+    <div class="before-after-grid">
+      <div class="ba-card">
+        <div class="ba-photo-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Upload photo</span>
+        </div>
+        <div class="ba-footer">
+          <span class="ba-name">Client Name</span>
+          <span class="ba-result">Result here</span>
+        </div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-photo-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Upload photo</span>
+        </div>
+        <div class="ba-footer">
+          <span class="ba-name">Client Name</span>
+          <span class="ba-result">Result here</span>
+        </div>
+      </div>
+      <div class="ba-card">
+        <div class="ba-photo-placeholder">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>
+          <span>Upload photo</span>
+        </div>
+        <div class="ba-footer">
+          <span class="ba-name">Client Name</span>
+          <span class="ba-result">Result here</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing">
+  <div class="container">
+    <p class="section-eyebrow">Investment</p>
+    <h2 class="section-title">One package. Everything included.</h2>
+    <div class="pricing-card">
+      <div class="pricing-header">
+        <div>
+          <div class="pricing-name">Online Coaching Package</div>
+          <div class="pricing-sub">Personalized · Accountable · Results-driven</div>
+        </div>
+        <div class="pricing-price-block">
+          <div class="pricing-was">Was $650</div>
+          <div class="pricing-amount">$390</div>
+          <div class="pricing-period">/month</div>
+        </div>
+      </div>
+      <div class="pricing-body">
+        <div class="pricing-item"><div class="check"></div>1-on-1 form &amp; technique session</div>
+        <div class="pricing-item"><div class="check"></div>Personalized workout program</div>
+        <div class="pricing-item"><div class="check"></div>Weekly accountability check-ins</div>
+        <div class="pricing-item"><div class="check"></div>24/7 WhatsApp support</div>
+        <div class="addon-label">Optional add-ons</div>
+        <div class="addon"><span>Custom meal plan</span><span class="addon-price">+$80</span></div>
+        <div class="addon"><span>Extra personal training session</span><span class="addon-price">+$105</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <p class="section-eyebrow">FAQ</p>
+    <h2 class="section-title">Common questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Do I need access to a gym, or can I work out at home?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Your program is built around whatever equipment you have — whether that's a full gym, a set of dumbbells at home, or just your bodyweight. Let Sash know during your assessment call and the plan will reflect it exactly.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          How long before I start seeing results?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Most clients notice real changes within the first 4–6 weeks — more energy, better sleep, and visible progress. Meaningful body composition changes typically show at 8–12 weeks with consistent effort. The key is showing up; the plan handles the rest.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          Is this coaching only available in Montreal?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          No — coaching is fully online and available worldwide. The onboarding session can be done virtually over video call. If you're in Montreal, an in-person option is also available upon request.
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-question" aria-expanded="false">
+          What happens after I fill out the assessment?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer">
+          Sash reviews your answers personally and reaches out to book a free 15-minute call. On that call, you'll get a clear picture of what your program would look like. There's no commitment required — just an honest conversation about your goals.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-section">
+  <div class="container">
+    <h2>Ready to stop guessing<br>and start <em>seeing results?</em></h2>
+    <p>Book your free 15-minute assessment call. Sash reviews your goals personally and tells you exactly what will work for you.</p>
+    <a href="https://tally.so/r/vGggxD" class="btn-primary" target="_blank" rel="noopener">Still not sure? The call is free :)</a>
+    <p class="cta-foot-note">Limited spots available each month · Montreal-based · Online worldwide</p>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/sashnejad" target="_blank" rel="noopener">
+      Instagram @sashnejad
+    </a>
+    <a href="https://www.linkedin.com/in/sash-nejad/" target="_blank" rel="noopener">
+      LinkedIn
+    </a>
+  </div>
+  <hr class="footer-divider">
+  &copy; 2026 Sash Nejad Coaching · Montreal, QC
+</footer>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-question').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.closest('.faq-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+        i.querySelector('.faq-icon').textContent = '+';
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+        item.querySelector('.faq-icon').textContent = '−';
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
